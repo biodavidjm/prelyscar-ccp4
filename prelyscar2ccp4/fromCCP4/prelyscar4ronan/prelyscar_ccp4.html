@@ -1,0 +1,201 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>PreLysCar, Predictor of Lysine Carboxylation</title><style type="text/css">#yieldsquare-ad {
+  margin:10px auto 20px;
+
+  width: 728px;
+}
+
+#yieldsquare-about a {
+  cursor: pointer;
+}
+
+.yieldsquare-enabled {
+  border-radius:0 0 5px 5px;
+  box-shadow: inset 0 0 75px 75px lightgray, 0 0 0 lightgray;
+  -webkit-transition:opacity 1s linear;
+}
+
+.yieldsquare-disabled-first {
+  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.45);
+  -webkit-transition: opacity 1s linear;
+  background-image: url(http://s3.amazonaws.com/static.yieldsquare.com/ads-disabled/messagebed.gif);
+  height: 90px;
+  opacity: 1;
+  position: relative;
+  width: 728px;
+}
+
+.yieldsquare-disabled-second {
+  -webkit-transition: all 0.4s ease-in-out;
+  background-image: url(http://s3.amazonaws.com/static.yieldsquare.com/ads-disabled/messagebed.gif);
+  border-radius:0 0 5px 5px;
+  box-shadow: inset 0 0 35px 35px transparent, 0 0 75px 50px transparent;
+  height: 90px;
+  opacity: 0;
+  position: relative;
+  width: 728px;
+}
+
+#yieldsquare-about-ad {
+  font:11px arial !important;
+  color:#555;
+  padding: 4px;
+  text-align:center;
+}
+
+#yieldsquare-about-ad a {
+  cursor: pointer;
+  color: #333;
+}
+
+.yieldsquare-message-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.yieldsquare-message-p {
+    font: 13px/17px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    width: 542px;
+    height: 74px;
+    left: 123px;
+    position: absolute;
+    top: 0px;
+    color: #3d3d3d;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+
+.yieldsquare-message-p span {
+    font: bold 16px/17px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    color: #292929;
+}
+
+.yieldsquare-message-p a {
+    text-decoration: none;
+    color: #1d97cf;
+}
+
+.yieldsquare-message-p a:hover {
+    text-decoration: underline;
+}
+
+#yieldsquare-message-x {
+    position: absolute;
+    left: 715px;
+    top: 6px;
+}
+
+</style></head>
+<body>
+
+<!-- ::INDEX_INFO::PRELYSCAR::Unsupported::Predictor of Lysine Carboxylation::unsupported:::::: -->
+
+<h1> PreLysCar (CCP4: Unsupported Program)</h1>
+<h2> NAME</h2>
+<b>PreLysCar </b>
+- <u>Pre</u>dictor of <u>Lys</u>ine <u>Car</u>boxylation.
+
+<h2> SYNOPSIS </h2>
+<b>perl prelyscar_ccp4.pl </b>  <b>-i=</b><i>&lt;PDB_FILE&gt;</i> <b>-c=</b><i>&lt;PROTEIN_CHAIN&gt;</i> <b>-p=</b><i>&lt;PRIOR_PROBABILITY&gt;</i>
+
+
+<a name="description"></a>
+<h2> DESCRIPTION</h2>
+
+<p>PreLysCar (<u>Pre</u>dictor of <u>Lys</u>ine <u>Car</u>boxylation) is a computational method for
+the prediction of lysine carboxylation (KCX) in proteins with an available
+three-dimensional structure.</p>
+
+<p>The carboxylation of lysine residues is a post-translational  modification
+that plays a critical role in the catalytic mechanisms of several important
+enzymes. It occurs spontaneously under certain physicochemical conditions, but
+is difficult to detect experimentally.</p>
+
+<p>PreLysCar is based on a Bayesian probabilistic classifier to
+distinguish lysine residues that are and are not carboxylated. Two main
+parameters are calculated by this Bayesian method.</p>
+
+<ol>
+<li>Probability distribution of the features, which is approximated with
+relative frequencies from the training set (F1, F2, ..., Fn). The features are
+the frequency of amino acids, ions, and water molecules found within 5
+Angstroms from carboxylated (KCX) and non carboxylated (LYS) lysine residues.</li>
+
+<li>Prior probability, which it can be arbitrarily selected as a best
+reasonable guess of the frequency of lysine carboxylation.</li>
+</ol>
+
+<a name="files"></a>
+
+<h2>OPTIONS</h2>
+
+ <dd><p><b>-i=&lt;PDB_FILE&gt;</b> Input file: a PDB file (Example: <i>-i=3U4F.pdb</i>) </p></dd>
+ <dd><p><b>-c=&lt;PROTEIN_CHAIN&gt;</b> (Example: <i>-c=A</i>) </p></dd>
+ <dd><p><b>-p=&lt;PRIOR_PROBABILITY&gt;</b> Any value between 0.0001 and 0.9999. (Recommended: <i>-p=0.009</i>)</p></dd>
+
+<h2>OUTPUT</h2>
+<p>List of predicted carboxylated lysine residues (<i>p</i>KCX), if any.</p>
+
+
+<h2>FAQ</h2>
+
+<h4> <i>How to choose the prior probability</i> </h4>
+
+<dd>
+<p>In Bayesian probability, the prior probability represents one's uncertainty about
+the probability of an event before some evidence is taken into account.</p>
+
+<p>p = 0.5&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp The carboxylation of lysine residues is expected to occur with the
+same prevalence than unmodified lysine residues. Running PreLysCar under this unrealistic
+assumption might result in more false positives (lysine residues incorrectly
+predicted as carboxylated, i.e., low specificity).</p>
+
+<p>p = 0.0001&nbsp&nbsp&nbsp&nbsp Lysine carboxylation is expected to occur very rarely. Execute
+PreLysCar with this prior probability might result in a lower sensitivity (lower
+number of true carboxylated lysine residues predicted as carboxylated), but an
+almost perfect specificity (no false positives).</p>
+
+<p> p = 0.009&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp This value obtained the best performance on the training data set (see reference).</p>
+</dd>
+
+<h4> <i>What if PreLysCar predicts a carboxylated lysine residue?</h4> </i>
+
+<dd>
+<p>Results on the training data set indicates that PreLysCar can provide
+predictions with robust positive and negative predictive values (93.1 and
+99.4%, respectively, see reference), namely, the odds of correctly predicting both KCX 
+and LYS sites are high. It also obtained an excellent sensitivity
+(~87%) and specificity (~100%).</p>
+
+<p>A positive peak in the Fo-Fc map at the tip of the side chain of the predicted
+carboxylated lysine residue could be considered a strong supporting indication
+of the reliability of the prediction. However, a careful structural analysis
+of its microenvironment is highly recommended. If the
+result of the analysis supports the carboxylation, further experimental
+procedures for its validation should be performed.</p>
+</dd>
+
+<h2> PRELYSCAR WEB SERVER</h2>
+
+<p>PreLysCar is also available online at the following url: <a href="http://tanto.bioengr.uic.edu/prelyscar/">http://tanto.bioengr.uic.edu/prelyscar/</a> </p>
+
+<h2> AUTHOR </h2>
+
+<a href="http://gila.bioengr.uic.edu/~davidjm/">David Jimenez-Morales</a>
+
+<h2> CONTACT </h2> 
+
+For any question / comment, please contact the author at: 
+prelyscar@gmail.com
+
+<h2> REFERENCE </h2> 
+
+<p>Please, cite:</p>
+<dd> Jimenez-Morales D, Adamian L, Shi D, and Liang J.</dd>
+<dd><i>Lysine Carboxylation: Unveiling a spontaneous posttranslational modification.</i></dd>
+<dd>Acta Crystallographica Section D(2014)70, 48-57</dd>
+
+
+
+</body></html>
