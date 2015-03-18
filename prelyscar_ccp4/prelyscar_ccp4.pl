@@ -5966,11 +5966,11 @@ procedures for its validation should be performed.
 =head1 PRELYSCAR WEB SERVER
 
 PreLysCar is also available online at the following url:
-http://tanto.bioengr.uic.edu/prelyscar/
+L<http://tanto.bioe.uic.edu/prelyscar/>
 
 =head1 AUTHOR
 
-David Jimenez-Morales
+L<David Jimenez-Morales|http://biodavidjm.github.io/>.
 
 =head1 CONTACT
 
