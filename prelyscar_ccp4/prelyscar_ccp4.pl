@@ -39,12 +39,12 @@ my $prior    = $options{p};
 # Argument -i (PDB)
 chomp($filename);
 my $PDB = '';
-if ( ( $filename =~ /\S{0,}(\w{4}).pdb$/ ) ) {
+if ( ( $filename =~ /\S{0,}(\w{4}).pdb$/ ) | ( $filename =~ /(.*).ent$/ ) ) {
     $PDB = $1;
 }
 else {
     print "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
-    print "ERROR: option -p\n";
+    print "ERROR: option -i\n";
     print "$filename must be in PDB format (PDB.pdb)\n";
     print "(Did you forget the extension?)\n";
     print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n";
@@ -5909,7 +5909,7 @@ perl prelyscar_ccp4.pl -i=3U4F.pdb -c=A -p=0.009
 
 =head1 DESCRIPTION
 
-PreLysCar (Predictor of Lysine Carboxyl­ation) is a computational method for
+PreLysCar (Predictor of Lysine Carboxylation) is a computational method for
 the prediction of lysine carboxylation (KCX) in proteins with an available
 three-dimensional structure.
 
@@ -5928,7 +5928,7 @@ the frequency of amino acids, ions, and water molecules found within 5
 Angstroms from carboxylated (KCX) and non carboxylated (LYS) lysine residues.
 
 2) Prior probability, which it can be arbitrarily selected as a best
-reasonable guess of the frequency of lysine carboxyl­ation. 
+reasonable guess of the frequency of lysine carboxylation.
 
 =head2 How to choose the prior probability 
 
